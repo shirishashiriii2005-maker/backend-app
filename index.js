@@ -25,7 +25,7 @@ app.use(express.static("public"));
 
 app.use(
   session({
-    secret: "secretkey",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
   }),
@@ -42,9 +42,11 @@ app.use("/", authenticateAdmin, homeRouter);
 app.use("/products", authenticateAdmin, productRouter);
 app.use("/users", authenticateAdmin, userRouter);
 
+const PORT = process.env.PORT ;
+
 const startServer = async () => {
   await dbConnect();
-  app.listen(5000, () => {
+  app.listen(PORT, () => {
     console.log("Server Started");
   });
 };
