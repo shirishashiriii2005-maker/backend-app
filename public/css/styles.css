@@ -30,3 +30,12 @@
     border-radius: 5px;
     
 }
+
+.star {
+  color: gray;
+  font-size: 20px;
+}
+
+.star.filled {
+  color: gold;
+}

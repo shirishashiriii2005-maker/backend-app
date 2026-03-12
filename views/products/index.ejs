@@ -3,19 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Products Admin Page</title>
+    <style>
+      .star.filled { color: gold; }
+      .star { color: gray; }
+    </style>
 </head>
 <body>
     <h2>Products Admin Page</h2>
     <a href="/products/add">Add Product</a>
     <ol>
     <% products.forEach(product => { %>
-        <li><%= product.name %>-
-            <%=product.desc %>-
-            <%= product.price %>-
-            <%= product.imageUrl %>-
-            <a href="/products/<%= product._id %>/edit">Edit</a>-
+        <li>
+            <%= product.name %> - 
+            <%= product.desc %> - 
+            <%= product.price %> - 
+            <%= product.imageUrl %> - 
+            <a href="/products/<%= product._id %>/edit">Edit</a> - 
             <a href="/products/<%= product._id %>/delete">Delete</a>
+
+            <!-- Rating stars for this product -->
+            <div class="rating">
+              <% for (let i = 1; i <= 5; i++) { %>
+                <% if (i <= product.rating) { %>
+                  <span class="star filled">&#9733;</span>
+                <% } else { %>
+                  <span class="star">&#9734;</span>
+                <% } %>
+              <% } %>
+            </div>
         </li>
     <% }) %>
     </ol>
